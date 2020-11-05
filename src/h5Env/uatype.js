@@ -1,0 +1,5 @@
+export const isMobile = () => /AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))
+export const isPhone = () => /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)
+export const isPad = () => /iPad/i.test(navigator.userAgent)
+export const isWX = () => /MicroMessenger/i.test(navigator.userAgent)
+export const isMQQ = () => /(?:MQQBrowser|QQ)/.test(navigator.userAgent)
