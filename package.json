@@ -1,6 +1,6 @@
 {
-  "name": "yuntun-utils",
-  "version": "1.0.0",
+  "name": "luna-utils",
+  "version": "1.0.1-beta",
   "description": "",
   "main": "index.js",
   "scripts": {
