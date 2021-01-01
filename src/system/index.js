@@ -5,5 +5,5 @@ export const isServer = () => !(
 )
 
 export default {
-    
+    isServer
 }
