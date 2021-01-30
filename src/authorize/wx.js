@@ -27,7 +27,7 @@ export const wxFetchUserInfo = () =>
         superagent.get(`/webcore/wx/base/${web_app_id}/get_wx_openid`)
         .query({ code, type: "h5", scope: 'snsapi_userinfo' })
         .then(res => {
-            if (res.body.errcode === 40163) {
+            if (res.body.errcode === 40163|| res.body.errcode === 40029) {
                 // 此时代表code已被使用，需要重新授权
                 wxThirdPartLogin();
             }
@@ -49,7 +49,7 @@ export const wxFetchBaseInfo = () =>
         superagent.get(`/webcore/wx/base/${web_app_id}/get_wx_openid`)
         .query({ code, type: "h5", scope: 'snsapi_base' })
         .then(res => {
-            if (res.body.errcode === 40163) {
+            if (res.body.errcode === 40163 || res.body.errcode === 40029) {
                 // 此时代表code已被使用，需要重新授权
                 wxThirdPartLogin('snsapi_base')
             }
