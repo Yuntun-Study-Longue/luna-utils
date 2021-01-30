@@ -1,6 +1,6 @@
 export const getWebAppId = () => {
     let WEB_APP_ID;
-    if (window.location.host === "m.yuntun-bj.com") {
+    if (window.location.host === "m.yuntun-bj.com" || window.location.host === "preview.yuntun-bj.com") {
         WEB_APP_ID = "wx9b261f80ad7c8c47";
     } else if (window.location.host === "preview.yuntun-bj.com") {
         WEB_APP_ID = "wx426caa9d2378f3a7";
