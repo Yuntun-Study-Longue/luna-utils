@@ -24,3 +24,11 @@ export const getAppId = () => {
     }
     return APP_ID;
 }
+
+export const getHost = () => {
+    let WX_REQUEST_HOST = '';
+    if (window.location.host === "m.yuntun-bj.com") {
+        WX_REQUEST_HOST = `${window.location.protocol}//www.yuntun-bj.com`;
+    }
+    return WX_REQUEST_HOST;
+}
