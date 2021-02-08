@@ -23,8 +23,9 @@ export const wxFetchUserInfo = () =>
     new Promise(resolve => {
         const web_app_id = _domainUtils.getWebAppId()
         const code = _domainUtils.getParams('code')
+        const wx_api_host = _domainUtils.getHost();
         if (!code) return resolve(null);
-        superagent.get(`${_domainUtils.getHost()}/webcore/wx/base/${web_app_id}/get_wx_openid`)
+        superagent.get(`${wx_api_host}/webcore/wx/base/${web_app_id}/get_wx_openid`)
         .query({ code, type: "h5", scope: 'snsapi_userinfo' })
         .then(res => {
             if (res.body.errcode === 40163|| res.body.errcode === 40029) {
@@ -32,7 +33,7 @@ export const wxFetchUserInfo = () =>
                 wxThirdPartLogin();
             }
             else if (res.body.data.openid) {
-                superagent.get(`${_domainUtils.getHost()}/webcore/wx/base/${web_app_id}/get_wx_userinfo`)
+                superagent.get(`${wx_api_host}/webcore/wx/base/${web_app_id}/get_wx_userinfo`)
                 .query({ openid: res.body.data.openid, type: "h5", scope: 'snsapi_userinfo' })
                 .then(result => resolve(result.body.data) )
                 .catch(() => resolve(null));
@@ -45,8 +46,9 @@ export const wxFetchBaseInfo = () =>
     new Promise(resolve => {
         const web_app_id = _domainUtils.getWebAppId()
         const code = _domainUtils.getParams('code')
+        const wx_api_host = _domainUtils.getHost();
         if (!code) return wxThirdPartLogin('snsapi_base');
-        superagent.get(`${_domainUtils.getHost()}/webcore/wx/base/${web_app_id}/get_wx_openid`)
+        superagent.get(`${wx_api_host}/webcore/wx/base/${web_app_id}/get_wx_openid`)
         .query({ code, type: "h5", scope: 'snsapi_base' })
         .then(res => {
             if (!!(window.history && history.pushState)){
@@ -77,7 +79,8 @@ export const wxFetchBaseInfo = () =>
 export const wxFetchUserInfoByOpenID = (OPEN_ID) =>
     new Promise(resolve => {
         const web_app_id = _domainUtils.getWebAppId()
-        superagent.get(`${_domainUtils.getHost()}/webcore/wx/base/${web_app_id}/get_wx_userinfo_by_openid`)
+        const wx_api_host = _domainUtils.getHost();
+        superagent.get(`${wx_api_host}/webcore/wx/base/${web_app_id}/get_wx_userinfo_by_openid`)
         .query({ OPEN_ID })
         .then(res => resolve(res.body) )
         .catch(e => resolve(null))
